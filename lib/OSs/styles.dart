@@ -48,4 +48,6 @@ class AppText {
   static const String title6 = "Feedback & Surveys";
   static const String text6 =
       "Share your opinions through simple surveys. Help improve learning, campus life, and support systems.";
+
+  static const String title7 = "User";
 }

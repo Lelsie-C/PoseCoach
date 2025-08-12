@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sugmps/OSs/routes.dart';
+import 'package:sugmps/routes.dart';
 import 'styles.dart';
 
 class OS6 extends StatefulWidget {
@@ -54,7 +54,7 @@ class _OS6State extends State<OS6> {
               onPressed: () {
                 // If you want to do something here, add it.
                 // Currently button repeats OS6.
-                Navigator.pushNamed(context, AppRoutes.os6);
+                Navigator.pushNamed(context, AppRoutes.usertype);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,

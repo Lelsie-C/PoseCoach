@@ -5,4 +5,6 @@ class AppRoutes {
   static const String os4 = "/os4";
   static const String os5 = "/os5";
   static const String os6 = "/os6";
+
+  static const String usertype = "/usertype";
 }

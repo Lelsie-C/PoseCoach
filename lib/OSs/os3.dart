@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sugmps/OSs/routes.dart';
+import 'package:sugmps/routes.dart';
 import 'styles.dart';
 
 class OS3 extends StatefulWidget {
