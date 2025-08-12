@@ -104,7 +104,7 @@ class _UserTypeState extends State<UserType> {
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 125,
+                          horizontal: 70,
                           vertical: 15,
                         ),
                         shape: RoundedRectangleBorder(

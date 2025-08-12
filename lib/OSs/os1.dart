@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'styles.dart';
 import 'package:sugmps/routes.dart';
 
-
 class OS1 extends StatefulWidget {
   const OS1({super.key});
 
@@ -58,27 +57,37 @@ class _OS1State extends State<OS1> {
               ),
             ),
             SizedBox(height: AppSizing.ftsb),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoutes.os2);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: AppColors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 125,
-                  vertical: 15,
+            Container(
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFE77B22), Color.fromARGB(255, 20, 3, 119)],
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSizing.buttonradius),
-                ),
-                elevation: AppSizing.elevation,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              child: const Text(
-                "Next",
-                style: TextStyle(
-                  fontSize: AppSizing.buttontextfont,
-                  fontWeight: FontWeight.bold,
+              child: ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.os3),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 125,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  elevation: 0,
+                ),
+                child: const Text(
+                  "Next",
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
             ),
