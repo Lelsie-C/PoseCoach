@@ -7,4 +7,6 @@ class AppRoutes {
   static const String os6 = "/os6";
 
   static const String usertype = "/usertype";
+  static const String registration = "/reg";
+  static const String login = "/login";
 }

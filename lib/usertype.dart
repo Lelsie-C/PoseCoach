@@ -10,14 +10,14 @@ class UserType extends StatefulWidget {
 }
 
 class _UserTypeState extends State<UserType> {
-  String? _selectedGender;
+  String? _selectedUserType;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
+        padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -29,14 +29,15 @@ class _UserTypeState extends State<UserType> {
                 fontSize: AppSizing.titlefont,
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
+
             Container(
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(vertical: 8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 4,
@@ -45,40 +46,39 @@ class _UserTypeState extends State<UserType> {
                 ],
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RadioListTile<String>(
-                    title: Text('Student'),
-                    value: 'male',
-                    groupValue: _selectedGender,
+                    title: const Text('Student'),
+                    value: 'student',
+                    groupValue: _selectedUserType,
                     onChanged: (value) {
                       setState(() {
-                        _selectedGender = value;
+                        _selectedUserType = value;
+                      });
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: const Text('Teacher'),
+                    value: 'teacher',
+                    groupValue: _selectedUserType,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedUserType = value;
+                      });
+                    },
+                  ),
+                  RadioListTile<String>(
+                    title: const Text('Admin'),
+                    value: 'admin',
+                    groupValue: _selectedUserType,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedUserType = value;
                       });
                     },
                   ),
 
-                  RadioListTile<String>(
-                    title: Text('Teacher'),
-                    value: 'male',
-                    groupValue: _selectedGender,
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedGender = value;
-                      });
-                    },
-                  ),
-
-                  RadioListTile<String>(
-                    title: Text('Admin'),
-                    value: 'male',
-                    groupValue: _selectedGender,
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedGender = value;
-                      });
-                    },
-                  ),
                   const SizedBox(height: 50),
                   Container(
                     decoration: BoxDecoration(
@@ -99,7 +99,24 @@ class _UserTypeState extends State<UserType> {
                     ),
                     child: ElevatedButton(
                       onPressed:
-                          () => Navigator.pushNamed(context, AppRoutes.os1),
+                          _selectedUserType == null
+                              ? null
+                              : () {
+                                if (_selectedUserType == "student") {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.registration,
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        "Only students can register here",
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
