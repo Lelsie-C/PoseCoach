@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sugmps/routes.dart';
+import '../services/auth_service.dart';
 
 class Registration extends StatefulWidget {
   const Registration({super.key});
@@ -22,7 +23,7 @@ class _RegistrationState extends State<Registration> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  // Variables to store inputs
+  // Input variables
   String? name;
   String? schoolEmail;
   String? otherEmail;
@@ -33,8 +34,8 @@ class _RegistrationState extends State<Registration> {
   File? profileImage;
 
   final ImagePicker _picker = ImagePicker();
+  bool _isLoading = false; // Loading state
 
-  // Gradient for icons
   static const _iconGradient = LinearGradient(
     colors: [Color(0xFFE77B22), Color.fromARGB(128, 20, 3, 119)],
     begin: Alignment.topLeft,
@@ -61,22 +62,6 @@ class _RegistrationState extends State<Registration> {
     }
   }
 
-  void _register() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-
-      debugPrint("Name: $name");
-      debugPrint("School Email: $schoolEmail");
-      debugPrint("Other Email: $otherEmail");
-      debugPrint("Matricule: $matricule");
-      debugPrint("Password: $password");
-      debugPrint("Gender: $gender");
-      debugPrint("Image: ${profileImage?.path}");
-
-      Navigator.pushNamed(context, AppRoutes.login);
-    }
-  }
-
   InputDecoration _inputDecoration(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
@@ -97,6 +82,44 @@ class _RegistrationState extends State<Registration> {
       filled: true,
       fillColor: const Color(0xFF2A2A2A),
     );
+  }
+
+  Future<void> _register() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    _formKey.currentState!.save();
+    setState(() => _isLoading = true);
+
+    final authService = AuthService(
+      baseUrl: 'https://example.com/api',
+    ); // Replace with your API URL
+
+    try {
+      final result = await authService.register(
+        name: name!,
+        schoolEmail: schoolEmail!,
+        otherEmail: otherEmail!,
+        matricule: matricule!,
+        password: password!,
+        gender: gender!,
+        profileImage: profileImage,
+      );
+
+      if (!mounted) return;
+      // Success
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Registration successful!')));
+      Navigator.pushNamed(context, AppRoutes.login);
+    } catch (e) {
+      if (!mounted) return;
+      // Error
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Registration failed: $e')));
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   @override
@@ -133,7 +156,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Profile Image Upload
+                  // Profile Image
                   GestureDetector(
                     onTap: _pickImage,
                     child: CircleAvatar(
@@ -287,28 +310,27 @@ class _RegistrationState extends State<Registration> {
                   const SizedBox(height: 25),
 
                   // Register Button
-                  ElevatedButton(
-                    onPressed: _register,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black.withValues(alpha: 0.25),
-                      side: const BorderSide(
-                        color: Colors.black,
-                        width: 1,
-                      ), // Stroke
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 100,
-                        vertical: 15,
+                  _isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                        onPressed: _register,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black.withOpacity(0.25),
+                          side: const BorderSide(color: Colors.black, width: 1),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 100,
+                            vertical: 15,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: const Text(
+                          "Register",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      "Register",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ),
                 ],
               ),
             ),
