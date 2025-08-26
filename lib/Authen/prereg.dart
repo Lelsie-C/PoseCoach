@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sugmps/routes.dart';
 import '../services/auth_service.dart';
 
-class Registration extends StatefulWidget {
-  const Registration({super.key});
+class Prereg extends StatefulWidget {
+  const Prereg({super.key});
 
   @override
-  State<Registration> createState() => _RegistrationState();
+  State<Prereg> createState() => _RegistrationState();
 }
 
-class _RegistrationState extends State<Registration> {
+class _RegistrationState extends State<Prereg> {
   final _formKey = GlobalKey<FormState>();
 
   // Controllers
@@ -39,7 +39,7 @@ class _RegistrationState extends State<Registration> {
       focusedBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color.fromARGB(255, 3, 110, 28)),
         borderRadius: BorderRadius.circular(8),
-      ), 
+      ),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       filled: true,
       fillColor: Color.fromRGBO(76, 175, 80, 0.30),
@@ -123,7 +123,7 @@ class _RegistrationState extends State<Registration> {
                   TextFormField(
                     controller: _usernameController,
                     style: const TextStyle(color: Colors.white),
-                    decoration: _inputDecoration("Username", Icons.person),
+                    decoration: _inputDecoration("Full name", Icons.person),
                     validator:
                         (value) =>
                             value == null || value.isEmpty
@@ -137,7 +137,7 @@ class _RegistrationState extends State<Registration> {
                   TextFormField(
                     controller: _emailController,
                     style: const TextStyle(color: Colors.white),
-                    decoration: _inputDecoration("Email", Icons.email),
+                    decoration: _inputDecoration("Date of birth", Icons.email),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty)
@@ -155,7 +155,7 @@ class _RegistrationState extends State<Registration> {
                   TextFormField(
                     controller: _passwordController,
                     style: const TextStyle(color: Colors.white),
-                    decoration: _inputDecoration("Password", Icons.lock),
+                    decoration: _inputDecoration("Country", Icons.lock),
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty)
@@ -172,10 +172,7 @@ class _RegistrationState extends State<Registration> {
                   TextFormField(
                     controller: _confirmPasswordController,
                     style: const TextStyle(color: Colors.white),
-                    decoration: _inputDecoration(
-                      "Confirm Password",
-                      Icons.lock_reset,
-                    ),
+                    decoration: _inputDecoration("Age", Icons.lock_reset),
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty)

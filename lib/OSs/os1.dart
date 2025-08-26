@@ -21,8 +21,6 @@ class _OS1State extends State<OS1> {
       precacheImage(const AssetImage(AppImages.image2), context);
       precacheImage(const AssetImage(AppImages.image3), context);
       precacheImage(const AssetImage(AppImages.image4), context);
-      precacheImage(const AssetImage(AppImages.image5), context);
-      precacheImage(const AssetImage(AppImages.image6), context);
 
       _imagesPrecached = true; // to avoid precaching multiple times
     }
@@ -32,66 +30,89 @@ class _OS1State extends State<OS1> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Padding(
-        padding: const EdgeInsets.all(AppSizing.edgeinsets),
-        child: Column(
-          children: [
-            const SizedBox(height: AppSizing.fsb),
-            Image.asset(AppImages.image1, height: 350, width: 300),
-            const SizedBox(height: AppSizing.ssb),
-            const Text(
-              AppText.title1,
-              style: TextStyle(
-                color: AppColors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 19,
-              ),
-            ),
-            const SizedBox(height: AppSizing.tsb),
-            Text(
-              AppText.text1,
-              style: TextStyle(
-                color: AppColors.whiteWithOpacity60,
-                fontWeight: FontWeight.normal,
-                fontSize: AppSizing.textfont,
-              ),
-            ),
-            SizedBox(height: AppSizing.ftsb),
-            Container(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFFE77B22), Color.fromARGB(255, 20, 3, 119)],
-                ),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(AppSizing.edgeinsets),
+          child: Column(
+            children: [
+              // Scrollable content
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: AppSizing.fsb),
+                      Image.asset(AppImages.image1, height: 350, width: 300),
+                      const SizedBox(height: AppSizing.ssb),
+                      const Text(
+                        AppText.title1,
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: AppSizing.tsb),
+                      Text(
+                        AppText.text1,
+                        style: TextStyle(
+                          color: AppColors.whiteWithOpacity60,
+                          fontWeight: FontWeight.normal,
+                          fontSize: AppSizing.textfont,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: AppSizing.ftsb),
+                    ],
                   ),
-                ],
-              ),
-              child: ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, AppRoutes.os2),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 125,
-                    vertical: 15,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  "Next",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
-            ),
-          ],
+              // Fixed Next button at bottom
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 14, 147, 73),
+                          Color.fromARGB(255, 76, 175, 80),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      onPressed:
+                          () => Navigator.pushNamed(context, AppRoutes.os2),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 125,
+                          vertical: 15,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

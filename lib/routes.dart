@@ -5,8 +5,12 @@ class AppRoutes {
   static const String os4 = "/os4";
   static const String os5 = "/os5";
   static const String os6 = "/os6";
+  static const String os7 = "/os7";
+  static const String os8 = "/os8";
 
   static const String usertype = "/usertype";
+  static const String prereg = "/prereg";
+
   static const String registration = "/reg";
   static const String login = "/login";
 }

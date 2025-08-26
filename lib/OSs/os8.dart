@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sugmps/routes.dart';
 import 'styles.dart';
 
-class OS6 extends StatefulWidget {
-  const OS6({super.key});
+class OS8 extends StatefulWidget {
+  const OS8({super.key});
 
   @override
-  State<OS6> createState() => _OS5State();
+  State<OS8> createState() => _OS5State();
 }
 
-class _OS5State extends State<OS6> {
+class _OS5State extends State<OS8> {
   bool _imagesPrecached = false;
 
   @override
@@ -34,7 +34,7 @@ class _OS5State extends State<OS6> {
             children: [
               // Top back arrow
               IconButton(
-                onPressed: () => Navigator.pushNamed(context, AppRoutes.os5),
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.os7),
                 icon: const Icon(
                   Icons.arrow_back,
                   size: 30,
@@ -49,7 +49,7 @@ class _OS5State extends State<OS6> {
                 child: Column(
                   children: const [
                     Text(
-                      "Do you experience back, neck, or shoulder pain?",
+                      "What is your main goal with this app?",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
@@ -76,25 +76,33 @@ class _OS5State extends State<OS6> {
                   child: Column(
                     children: [
                       _frequencyContainer(
-                        icon: Icons.not_interested,
-                        iconColor: Colors.grey,
-                        label: "Yes",
-                        opacity: 0.50,
+                        icon: Icons.done,
+                        iconColor: Colors.green,
+                        label: "Improve posture",
+                        opacity: 0.25,
                         onTap: () {},
                       ),
                       const SizedBox(height: 15),
                       _frequencyContainer(
-                        icon: Icons.looks_two,
-                        iconColor: Colors.blue,
-                        label: "No",
-                        opacity: 0.50,
+                        icon: Icons.done,
+                        iconColor: Colors.green,
+                        label: "Reduce back pain",
+                        opacity: 0.25,
                         onTap: () {},
                       ),
                       const SizedBox(height: 15),
                       _frequencyContainer(
-                        icon: Icons.repeat,
-                        iconColor: Colors.orange,
-                        label: "Sometimes",
+                        icon: Icons.done,
+                        iconColor: Colors.green,
+                        label: "Build strength",
+                        opacity: 0.25,
+                        onTap: () {},
+                      ),
+                      const SizedBox(height: 15),
+                      _frequencyContainer(
+                        icon: Icons.done,
+                        iconColor: Colors.green,
+                        label: "Stay active",
                         opacity: 0.25,
                         onTap: () {},
                       ),
@@ -125,7 +133,8 @@ class _OS5State extends State<OS6> {
                     ),
                     child: ElevatedButton(
                       onPressed:
-                          () => Navigator.pushNamed(context, AppRoutes.os7),
+                          () =>
+                              Navigator.pushNamed(context, AppRoutes.usertype),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,

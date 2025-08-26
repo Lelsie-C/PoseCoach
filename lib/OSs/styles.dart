@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFFE77B22);
-  static const Color background = Color(0xFF202020);
-  static const Color whiteWithOpacity60 = Color.fromRGBO(255, 255, 255, 0.6);
-  static const Color white = Colors.white;
+  static const Color primary = Color.fromARGB(255, 76, 175, 80);
+  static const Color background = Colors.white;
+  static const Color whiteWithOpacity60 = Color.fromRGBO(74, 73, 73, 0.6);
+  static const Color white = Color.fromARGB(255, 17, 17, 17);
 }
 
 class AppSizing {
@@ -21,27 +21,25 @@ class AppSizing {
 }
 
 class AppImages {
-  static const String image1 = "assets/image1.png";
-  static const String image2 = "assets/image2.png";
-  static const String image3 = "assets/image3.png";
-  static const String image4 = "assets/image4.png";
-  static const String image5 = "assets/image5.png";
-  static const String image6 = "assets/image6.png";
+  static const String image1 = "assets/wo_image1.png";
+  static const String image2 = "assets/wo_image2.png";
+  static const String image3 = "assets/wo_image3.png";
+  static const String image4 = "assets/wo_image4.png";
 }
 
 class AppText {
-  static const String title1 = "Track Your Academic Performance";
+  static const String title1 = "Welcome to PoseCoach";
   static const String text1 =
-      "View your grades, monitor your GPA & CGPA in real-time, and get insights to help you stay on top of your academic journey.";
-  static const String title2 = "Organize Your Schedule";
+      "Your journey to better posture, strength, and confidence starts here.";
+  static const String title2 = "Get Instant Feedback";
   static const String text2 =
-      "View your class timetable, exam dates, and deadlines — all in one place. Stay ahead, never miss a thing.";
-  static const String title3 = "Get Important Notifications";
+      "See your posture and form analyzed in real-time using your camera — no wearables needed.";
+  static const String title3 = "Benefits";
   static const String text3 =
-      "Receive instant alerts for results, assignments, announcements, and school events — right when they happen.";
-  static const String title4 = "Smart Academic Insights";
+      "Improve your posture, prevent back pain, and build a stronger, healthier you – one step at a time.";
+  static const String title4 = "Get started";
   static const String text4 =
-      "Get personalized suggestions based on your academic trends to improve your performance and make smarter decisions.";
+      "Small daily habits lead to big results.Let’s get started with your first posture & fitness check!, but first answer a few questions so we know you better.";
   static const String title5 = "Secure & Private";
   static const String text5 =
       "Your academic records are protected. Choose what info to show, and when — your privacy is in your hands.";

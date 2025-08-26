@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sugmps/Authen/login.dart';
 import 'package:sugmps/Authen/registration.dart';
+import 'package:sugmps/Authen/prereg.dart';
 import 'package:sugmps/usertype.dart';
 import 'routes.dart';
 import 'OSs/styles.dart';
@@ -11,6 +12,8 @@ import 'OSs/os3.dart';
 import 'OSs/os4.dart';
 import 'OSs/os5.dart';
 import 'OSs/os6.dart';
+import 'OSs/os7.dart';
+import 'OSs/os8.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,8 +57,17 @@ class MyApp extends StatelessWidget {
           case AppRoutes.os6:
             builder = (_) => const OS6();
             break;
+          case AppRoutes.os7:
+            builder = (_) => const OS7();
+            break;
+          case AppRoutes.os8:
+            builder = (_) => const OS8();
+            break;
           case AppRoutes.usertype:
             builder = (_) => const UserType();
+            break;
+          case AppRoutes.prereg:
+            builder = (_) => const Prereg();
             break;
           case AppRoutes.registration:
             builder = (_) => const Registration();
