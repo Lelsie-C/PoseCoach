@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:sugmps/Authen/login.dart';
 import 'package:sugmps/Authen/registration.dart';
 import 'package:sugmps/Authen/prereg.dart';
-import 'package:sugmps/usertype.dart';
+import 'package:sugmps/MSs/homepage.dart';
+import 'package:sugmps/MSs/activitypage.dart';
 import 'routes.dart';
 import 'OSs/styles.dart';
 import 'OSs/os1.dart';
@@ -63,9 +64,6 @@ class MyApp extends StatelessWidget {
           case AppRoutes.os8:
             builder = (_) => const OS8();
             break;
-          case AppRoutes.usertype:
-            builder = (_) => const UserType();
-            break;
           case AppRoutes.prereg:
             builder = (_) => const Prereg();
             break;
@@ -74,6 +72,12 @@ class MyApp extends StatelessWidget {
             break;
           case AppRoutes.login:
             builder = (_) => const Login();
+            break;
+          case AppRoutes.homepage:
+            builder = (_) => const Homepage();
+            break;
+          case AppRoutes.activity:
+            builder = (_) => const Activitypage();
             break;
           default:
             throw Exception('Invalid route: ${settings.name}');

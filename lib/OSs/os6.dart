@@ -6,10 +6,10 @@ class OS6 extends StatefulWidget {
   const OS6({super.key});
 
   @override
-  State<OS6> createState() => _OS5State();
+  State<OS6> createState() => _OS6State();
 }
 
-class _OS5State extends State<OS6> {
+class _OS6State extends State<OS6> {
   bool _imagesPrecached = false;
 
   @override
@@ -125,7 +125,10 @@ class _OS5State extends State<OS6> {
                     ),
                     child: ElevatedButton(
                       onPressed:
-                          () => Navigator.pushNamed(context, AppRoutes.os7),
+                          () => Navigator.pushReplacementNamed(
+                            context,
+                            AppRoutes.os7,
+                          ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,

@@ -9,8 +9,10 @@ class AppRoutes {
   static const String os8 = "/os8";
 
   static const String usertype = "/usertype";
-  static const String prereg = "/prereg";
 
+  static const String prereg = "/prereg";
   static const String registration = "/reg";
   static const String login = "/login";
+  static const String homepage = "/homepage";
+  static const String activity = "/activitypage";
 }
