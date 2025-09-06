@@ -135,7 +135,7 @@ class _OS5State extends State<OS8> {
                       onPressed:
                           () => Navigator.pushReplacementNamed(
                             context,
-                            AppRoutes.activity,
+                            AppRoutes.homepage,
                           ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,

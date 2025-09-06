@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: '>=3.7.2 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,6 +30,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  camera: ^0.10.5+9
+  mediapipe_tasks_flutter:
+    git:
+      url: https://github.com/google-ai-edge/mediapipe
+      path: mediapipe/tasks/flutter/mediapipe_tasks_flutter
+  image: ^4.1.4
   image_picker: ^1.1.1
   font_awesome_flutter: ^10.4.0
 
@@ -66,6 +73,7 @@ flutter:
     - assets/wo_image2.png
     - assets/wo_image3.png
     - assets/wo_image4.png
+    - assets/models/pose_landmarker_lite.task  # ✅ CORRECTED PATH - matches your code
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'navbar.dart';
 
 class Activitypage extends StatelessWidget {
   const Activitypage({super.key});
@@ -91,7 +90,6 @@ class Activitypage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

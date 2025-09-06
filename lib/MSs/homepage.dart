@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'navbar.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -201,7 +200,6 @@ class Homepage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
     );
   }
 }

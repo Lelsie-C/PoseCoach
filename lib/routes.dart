@@ -15,4 +15,5 @@ class AppRoutes {
   static const String login = "/login";
   static const String homepage = "/homepage";
   static const String activity = "/activitypage";
+  static const String navbar = "/navbar";
 }

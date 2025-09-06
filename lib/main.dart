@@ -3,8 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:sugmps/Authen/login.dart';
 import 'package:sugmps/Authen/registration.dart';
 import 'package:sugmps/Authen/prereg.dart';
-import 'package:sugmps/MSs/homepage.dart';
-import 'package:sugmps/MSs/activitypage.dart';
+import 'package:sugmps/MSs/navbar.dart';
 import 'routes.dart';
 import 'OSs/styles.dart';
 import 'OSs/os1.dart';
@@ -74,10 +73,7 @@ class MyApp extends StatelessWidget {
             builder = (_) => const Login();
             break;
           case AppRoutes.homepage:
-            builder = (_) => const Homepage();
-            break;
-          case AppRoutes.activity:
-            builder = (_) => const Activitypage();
+            builder = (_) => const BottomNav();
             break;
           default:
             throw Exception('Invalid route: ${settings.name}');
