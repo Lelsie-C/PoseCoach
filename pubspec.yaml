@@ -32,10 +32,6 @@ dependencies:
     sdk: flutter
 
   camera: ^0.10.5+9
-  mediapipe_tasks_flutter:
-    git:
-      url: https://github.com/google-ai-edge/mediapipe
-      path: mediapipe/tasks/flutter/mediapipe_tasks_flutter
   image: ^4.1.4
   image_picker: ^1.1.1
   font_awesome_flutter: ^10.4.0
@@ -73,7 +69,7 @@ flutter:
     - assets/wo_image2.png
     - assets/wo_image3.png
     - assets/wo_image4.png
-    - assets/models/pose_landmarker_lite.task  # ✅ CORRECTED PATH - matches your code
+    
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
