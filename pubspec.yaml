@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: '>=3.7.2 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,7 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  camera: ^0.10.5+9
+  image: ^4.1.4
   image_picker: ^1.1.1
+  font_awesome_flutter: ^10.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -60,10 +64,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/wo_image.png
     - assets/wo_image1.png
     - assets/wo_image2.png
     - assets/wo_image3.png
     - assets/wo_image4.png
+    
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
