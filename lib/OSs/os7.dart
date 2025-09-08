@@ -6,10 +6,10 @@ class OS7 extends StatefulWidget {
   const OS7({super.key});
 
   @override
-  State<OS7> createState() => _OS5State();
+  State<OS7> createState() => _OS7State();
 }
 
-class _OS5State extends State<OS7> {
+class _OS7State extends State<OS7> {
   bool _imagesPrecached = false;
 
   @override
@@ -34,7 +34,7 @@ class _OS5State extends State<OS7> {
             children: [
               // Top back arrow
               IconButton(
-                onPressed: () => Navigator.pushNamed(context, AppRoutes.os6),
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.os8),
                 icon: const Icon(
                   Icons.arrow_back,
                   size: 30,
@@ -133,7 +133,10 @@ class _OS5State extends State<OS7> {
                     ),
                     child: ElevatedButton(
                       onPressed:
-                          () => Navigator.pushNamed(context, AppRoutes.os8),
+                          () => Navigator.pushReplacementNamed(
+                            context,
+                            AppRoutes.os8,
+                          ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,

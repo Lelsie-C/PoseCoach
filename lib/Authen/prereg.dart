@@ -57,7 +57,7 @@ class _RegistrationState extends State<Prereg> {
     ); // Replace with your API URL
 
     try {
-      final result = await authService.register(
+      await authService.register(
         name: username!,
         schoolEmail: email!,
         password: password!,
@@ -140,8 +140,9 @@ class _RegistrationState extends State<Prereg> {
                     decoration: _inputDecoration("Date of birth", Icons.email),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
-                      if (value == null || value.isEmpty)
+                      if (value == null || value.isEmpty) {
                         return "Enter your email";
+                      }
                       if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                         return "Enter a valid email";
                       }
@@ -158,10 +159,12 @@ class _RegistrationState extends State<Prereg> {
                     decoration: _inputDecoration("Country", Icons.lock),
                     obscureText: true,
                     validator: (value) {
-                      if (value == null || value.isEmpty)
+                      if (value == null || value.isEmpty) {
                         return "Enter password";
-                      if (value.length < 6)
+                      }
+                      if (value.length < 6) {
                         return "Password must be at least 6 chars";
+                      }
                       return null;
                     },
                     onSaved: (value) => password = value,
@@ -175,10 +178,12 @@ class _RegistrationState extends State<Prereg> {
                     decoration: _inputDecoration("Age", Icons.lock_reset),
                     obscureText: true,
                     validator: (value) {
-                      if (value == null || value.isEmpty)
+                      if (value == null || value.isEmpty) {
                         return "Confirm your password";
-                      if (value != _passwordController.text)
+                      }
+                      if (value != _passwordController.text) {
                         return "Passwords do not match";
+                      }
                       return null;
                     },
                     onSaved: (value) => confirmPassword = value,
