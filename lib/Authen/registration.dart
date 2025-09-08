@@ -57,7 +57,7 @@ class _RegistrationState extends State<Registration> {
     ); // Replace with your API URL
 
     try {
-      final result = await authService.register(
+      await authService.register(
         name: username!,
         schoolEmail: email!,
         password: password!,

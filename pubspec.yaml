@@ -39,6 +39,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  tflite: ^1.1.2
+  tflite_flutter: ^0.11.0
+  http: ^1.5.0
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +72,7 @@ flutter:
     - assets/wo_image2.png
     - assets/wo_image3.png
     - assets/wo_image4.png
-    
+    - models/movenet.tflite   
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

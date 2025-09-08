@@ -7,10 +7,10 @@ class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
 
   @override
-  _BottomNavState createState() => _BottomNavState();
+  BottomNavState createState() => BottomNavState();
 }
 
-class _BottomNavState extends State<BottomNav> {
+class BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
 
   // Pages for each tab

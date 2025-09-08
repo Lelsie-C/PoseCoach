@@ -90,7 +90,7 @@ class _PoseHomePageState extends State<PoseHomePage> {
   Future<void> _loadModel() async {
     try {
       _interpreter = await Interpreter.fromAsset(
-        'assets/movenet/movenet.tflite',
+        'assets/models/movenet.tflite',
       );
       debugPrint("Interpreter loaded successfully");
 
