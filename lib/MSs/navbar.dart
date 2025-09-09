@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sugmps/MSs/activitypage.dart';
+import 'package:sugmps/MSs/statisticspage.dart';
 import 'package:sugmps/MSs/homepage.dart';
 
 class BottomNav extends StatefulWidget {
@@ -17,6 +18,7 @@ class _BottomNavState extends State<BottomNav> {
   final List<Widget> _pages = const [
     Homepage(),
     Activitypage(),
+    Statisticspage(),
     Center(
       child: Text(
         'Stats Page',

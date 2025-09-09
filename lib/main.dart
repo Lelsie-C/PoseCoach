@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sugmps/Authen/login.dart';
-import 'package:sugmps/Authen/registration.dart';
-import 'package:sugmps/Authen/prereg.dart';
-import 'package:sugmps/MSs/navbar.dart';
+import 'package:camera/camera.dart';
+import 'camera_screen.dart';
 import 'routes.dart';
 import 'OSs/styles.dart';
 import 'OSs/os1.dart';
@@ -14,10 +12,24 @@ import 'OSs/os5.dart';
 import 'OSs/os6.dart';
 import 'OSs/os7.dart';
 import 'OSs/os8.dart';
+import 'package:sugmps/Authen/login.dart';
+import 'package:sugmps/Authen/registration.dart';
+import 'package:sugmps/Authen/prereg.dart';
+import 'package:sugmps/MSs/navbar.dart';
+import 'video_store.dart';
 
-void main() {
+late List<CameraDescription> cameras;
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Load available cameras
+  cameras = await availableCameras();
+
+  // Load previously saved videos
+  await loadVideosFromPrefs();
+
+  // Set status bar color and icons
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: AppColors.background,
@@ -25,11 +37,12 @@ void main() {
     ),
   );
 
-  runApp(const MyApp());
+  runApp(MyApp(cameras: cameras));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final List<CameraDescription> cameras;
+  const MyApp({super.key, required this.cameras});
 
   @override
   Widget build(BuildContext context) {
@@ -75,9 +88,14 @@ class MyApp extends StatelessWidget {
           case AppRoutes.homepage:
             builder = (_) => const BottomNav();
             break;
+          case AppRoutes.camera:
+            // Pass cameras list to CameraScreen
+            builder = (_) => CameraScreen(cameras: cameras);
+            break;
           default:
             throw Exception('Invalid route: ${settings.name}');
         }
+
         return PageRouteBuilder(
           pageBuilder: (context, __, ___) => builder(context),
           transitionsBuilder: (_, animation, __, child) {

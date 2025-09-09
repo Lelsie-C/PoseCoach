@@ -16,4 +16,6 @@ class AppRoutes {
   static const String homepage = "/homepage";
   static const String activity = "/activitypage";
   static const String navbar = "/navbar";
+  static const String camera = "/camera";
+
 }

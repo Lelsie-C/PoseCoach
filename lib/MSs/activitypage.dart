@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sugmps/routes.dart';
 
 class Activitypage extends StatelessWidget {
   const Activitypage({super.key});
@@ -49,38 +50,59 @@ class Activitypage extends StatelessWidget {
                   child: Column(
                     children: [
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Dumbbell Rows",
+                        route: AppRoutes.camera,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Squat Training",
+                        route: AppRoutes.camera,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Pull-Ups",
+                        route: AppRoutes.camera,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Bench Press",
+                        route: AppRoutes.camera,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Lunges",
+                        route: AppRoutes.camera,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Leg Raises",
+                        route: AppRoutes.camera,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
+                        context: context,
+
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Overhead Press",
+                        route: AppRoutes.camera,
                       ),
                     ],
                   ),
@@ -94,8 +116,12 @@ class Activitypage extends StatelessWidget {
   }
 }
 
-// Activity Card Widget
-Widget _activityap({required IconData icon, required String label}) {
+Widget _activityap({
+  required BuildContext context,
+  required IconData icon,
+  required String label,
+  required String route,
+}) {
   return Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
     decoration: BoxDecoration(
@@ -126,7 +152,7 @@ Widget _activityap({required IconData icon, required String label}) {
           ],
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, route),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(40, 30),
             backgroundColor: const Color.fromARGB(50, 76, 175, 80),

@@ -10,10 +10,15 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <!-- Required for TensorFlow Lite -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.faketouch" android:required="false" />
+
     <application
         android:label="sugmps"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -34,9 +39,15 @@
             </intent-filter>
         </activity>
 
+        <!-- TensorFlow Lite metadata -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        
+        <!-- Prevent screen rotation if desired -->
+        <meta-data
+            android:name="io.flutter.embedding.android.ScreenOrientation"
+            android:value="portrait" />
     </application>
 
     <queries>
