@@ -21,6 +21,8 @@ dependencies:
   path_provider: ^2.1.2
   video_player: ^2.8.2
   shared_preferences: ^2.2.1
+  google_mlkit_pose_detection: ^0.11.0  # Downgraded to match available versions
+  google_mlkit_commons: ^0.7.1
   
 
 dev_dependencies:
