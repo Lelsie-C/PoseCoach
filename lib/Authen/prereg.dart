@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sugmps/routes.dart';
+import 'package:sugmps/utils/routes.dart';
 import '../services/auth_service.dart';
 
 class Prereg extends StatefulWidget {

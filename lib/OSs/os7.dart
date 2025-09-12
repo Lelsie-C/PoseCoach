@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sugmps/routes.dart';
-import 'styles.dart';
+import 'package:sugmps/utils/routes.dart';
+import '../utils/styles.dart';
 
 class OS7 extends StatefulWidget {
   const OS7({super.key});

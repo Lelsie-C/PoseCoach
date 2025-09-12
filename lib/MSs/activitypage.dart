@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sugmps/routes.dart';
+import 'package:sugmps/utils/routes.dart';
 
 class Activitypage extends StatelessWidget {
   const Activitypage({super.key});
@@ -22,14 +22,9 @@ class Activitypage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(
-                        Icons.arrow_back,
-                        size: 20,
-                        color: Colors.black,
-                      ),
-                      const SizedBox(height: 13),
+                      const SizedBox(height: 10),
                       const Text(
-                        "Perfect your pose",
+                        "Choose an exercise",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -43,7 +38,7 @@ class Activitypage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 35),
+              const SizedBox(height: 30),
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -53,16 +48,8 @@ class Activitypage extends StatelessWidget {
                         context: context,
 
                         icon: FontAwesomeIcons.dumbbell,
-                        label: "Dumbbell Rows",
-                        route: AppRoutes.camera,
-                      ),
-                      const SizedBox(height: 20),
-                      _activityap(
-                        context: context,
-
-                        icon: FontAwesomeIcons.dumbbell,
                         label: "Squat Training",
-                        route: AppRoutes.camera,
+                        route: AppRoutes.squatdetection,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
@@ -70,7 +57,15 @@ class Activitypage extends StatelessWidget {
 
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Pull-Ups",
-                        route: AppRoutes.camera,
+                        route: AppRoutes.pushupdetection,
+                      ),
+                      const SizedBox(height: 20),
+                      _activityap(
+                        context: context,
+
+                        icon: FontAwesomeIcons.dumbbell,
+                        label: "Dumbbell Rows",
+                        route: AppRoutes.notyetavailable,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
@@ -78,7 +73,7 @@ class Activitypage extends StatelessWidget {
 
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Bench Press",
-                        route: AppRoutes.camera,
+                        route: AppRoutes.notyetavailable,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
@@ -86,7 +81,7 @@ class Activitypage extends StatelessWidget {
 
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Lunges",
-                        route: AppRoutes.camera,
+                        route: AppRoutes.notyetavailable,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
@@ -94,7 +89,7 @@ class Activitypage extends StatelessWidget {
 
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Leg Raises",
-                        route: AppRoutes.camera,
+                        route: AppRoutes.notyetavailable,
                       ),
                       const SizedBox(height: 20),
                       _activityap(
@@ -102,7 +97,7 @@ class Activitypage extends StatelessWidget {
 
                         icon: FontAwesomeIcons.dumbbell,
                         label: "Overhead Press",
-                        route: AppRoutes.camera,
+                        route: AppRoutes.notyetavailable,
                       ),
                     ],
                   ),

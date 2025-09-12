@@ -23,6 +23,10 @@ dependencies:
   shared_preferences: ^2.2.1
   google_mlkit_pose_detection: ^0.11.0  # Downgraded to match available versions
   google_mlkit_commons: ^0.7.1
+<<<<<<< HEAD
+=======
+  
+>>>>>>> bf54a62 (Detections implemented fully, errors fixed, folders added for modularity and clarity(utils and detections folder), redirecvtions implemented)
   
 
 dev_dependencies:

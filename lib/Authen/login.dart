@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sugmps/routes.dart';
+import 'package:sugmps/utils/routes.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

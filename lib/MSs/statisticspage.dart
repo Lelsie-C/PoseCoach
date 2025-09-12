@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sugmps/camera_screen.dart';
-import 'package:sugmps/video_store.dart';
+import 'package:sugmps/detections/squatdetection.dart';
+import 'package:sugmps/utils/video_store.dart';
+import 'package:sugmps/utils/videoplayer.dart';
+import 'package:sugmps/utils/routes.dart';
 
 class Statisticspage extends StatefulWidget {
   const Statisticspage({super.key});
@@ -24,12 +26,12 @@ class _StatisticspageState extends State<Statisticspage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                  // Removed const here to allow Navigator call
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.arrow_back, size: 20, color: Colors.black),
-                      SizedBox(height: 13),
-                      Text(
+                      const SizedBox(height: 13),
+                      const Text(
                         "Statistics",
                         style: TextStyle(
                           fontSize: 24,
@@ -44,7 +46,7 @@ class _StatisticspageState extends State<Statisticspage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 35),
+              const SizedBox(height: 30),
 
               // Dynamic video list
               Expanded(

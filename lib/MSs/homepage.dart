@@ -21,13 +21,8 @@ class Homepage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(
-                        Icons.arrow_back,
-                        size: 20,
-                        color: Colors.black,
-                      ),
                       const SizedBox(height: 13),
-                      const Text("Hi, Leslie", style: TextStyle(fontSize: 22)),
+                      const Text("Hey there!", style: TextStyle(fontSize: 22)),
                       const SizedBox(height: 10),
                       const Text(
                         "Perfect your pose",
@@ -145,12 +140,6 @@ class Homepage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _activitymp(
-                      icon: FontAwesomeIcons.dumbbell,
-                      label: "Dumbbell Rows",
-                      wolabel: "10 Workouts",
-                      time: "1hr 20min",
-                    ),
                     const SizedBox(width: 10),
                     _activitymp(
                       icon: FontAwesomeIcons.dumbbell,
@@ -172,24 +161,11 @@ class Homepage extends StatelessWidget {
                       wolabel: "20 Workouts",
                       time: "1hr",
                     ),
-                    const SizedBox(width: 10),
-                    _activitymp(
-                      icon: FontAwesomeIcons.dumbbell,
-                      label: "Lunges",
-                      wolabel: "20 Workouts",
-                      time: "1hr",
-                    ),
+
                     const SizedBox(width: 10),
                     _activitymp(
                       icon: FontAwesomeIcons.dumbbell,
                       label: "Leg Raises",
-                      wolabel: "20 Workouts",
-                      time: "1hr",
-                    ),
-                    const SizedBox(width: 10),
-                    _activitymp(
-                      icon: FontAwesomeIcons.dumbbell,
-                      label: "Overhead Press",
                       wolabel: "20 Workouts",
                       time: "1hr",
                     ),
