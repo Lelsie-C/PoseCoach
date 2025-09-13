@@ -86,7 +86,7 @@ class _OS4State extends State<OS4> {
                     ),
                     child: ElevatedButton(
                       onPressed:
-                          () => Navigator.pushNamed(context, AppRoutes.os5),
+                          () => Navigator.pushNamed(context, AppRoutes.os8),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,

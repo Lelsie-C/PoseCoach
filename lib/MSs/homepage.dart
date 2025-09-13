@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sugmps/utils/routes.dart'; // Make sure this contains your AppRoutes
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -48,7 +49,7 @@ class Homepage extends StatelessWidget {
                   vertical: 12,
                 ),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(100, 76, 175, 80),
+                  color: const Color.fromARGB(100, 76, 175, 80),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -63,7 +64,7 @@ class Homepage extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(50, 76, 175, 80),
+                            color: const Color.fromARGB(50, 76, 175, 80),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Text(
@@ -83,7 +84,7 @@ class Homepage extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(40, 30),
+                            minimumSize: const Size(40, 30),
                             backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -120,10 +121,10 @@ class Homepage extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: const Color.fromARGB(25, 76, 175, 80),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: const Text(
-                      "View all",
+                      "4",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -142,6 +143,7 @@ class Homepage extends StatelessWidget {
                   children: [
                     const SizedBox(width: 10),
                     _activitymp(
+                      context,
                       icon: FontAwesomeIcons.dumbbell,
                       label: "Squat Training",
                       wolabel: "5 Workouts",
@@ -149,6 +151,7 @@ class Homepage extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     _activitymp(
+                      context,
                       icon: FontAwesomeIcons.dumbbell,
                       label: "Pull-Ups",
                       wolabel: "20 Workouts",
@@ -156,14 +159,15 @@ class Homepage extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     _activitymp(
+                      context,
                       icon: FontAwesomeIcons.dumbbell,
                       label: "Bench Press",
                       wolabel: "20 Workouts",
                       time: "1hr",
                     ),
-
                     const SizedBox(width: 10),
                     _activitymp(
+                      context,
                       icon: FontAwesomeIcons.dumbbell,
                       label: "Leg Raises",
                       wolabel: "20 Workouts",
@@ -180,63 +184,77 @@ class Homepage extends StatelessWidget {
   }
 }
 
-Widget _activitymp({
+Widget _activitymp(
+  BuildContext context, { // added context parameter
   required IconData icon,
   required String label,
   required String wolabel,
   required String time,
 }) {
-  return Container(
-    width: 140,
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      border: Border.all(
-        color: const Color.fromARGB(128, 41, 103, 45),
-        width: 2,
-      ),
-      borderRadius: BorderRadius.circular(20),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          offset: const Offset(0, 4),
-          blurRadius: 4,
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ShaderMask(
-          shaderCallback: (Rect bounds) {
-            return const LinearGradient(
-              colors: [Color(0xFF31782B), Color.fromARGB(80, 43, 120, 69)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ).createShader(bounds);
-          },
-          child: Icon(icon, size: 30, color: Colors.white),
-        ),
+  // Determine the route based on label
+  String route;
+  if (label == "Squat Training" || label == "Pull-Ups") {
+    route = AppRoutes.squatdetection;
+  } else {
+    route = AppRoutes.notyetavailable;
+  }
 
-        const SizedBox(height: 20),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+  return InkWell(
+    onTap: () {
+      Navigator.pushNamed(context, route);
+    },
+    child: Container(
+      width: 140,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: const Color.fromARGB(128, 41, 103, 45),
+          width: 2,
         ),
-        const SizedBox(height: 7),
-        Text(wolabel, style: const TextStyle(fontSize: 13)),
-        const SizedBox(height: 45),
-        Row(
-          children: [
-            const Icon(Icons.timelapse, size: 15, color: Colors.black54),
-            const SizedBox(width: 5),
-            Text(
-              time,
-              style: const TextStyle(fontSize: 15, color: Colors.black54),
-            ),
-          ],
-        ),
-      ],
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            offset: const Offset(0, 4),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return const LinearGradient(
+                colors: [Color(0xFF31782B), Color.fromARGB(80, 43, 120, 69)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ).createShader(bounds);
+            },
+            child: Icon(icon, size: 30, color: Colors.white),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 7),
+          Text(wolabel, style: const TextStyle(fontSize: 13)),
+          const SizedBox(height: 45),
+          Text("Accuracy", style: TextStyle(color: Colors.black)),
+          Row(
+            children: [
+              const Icon(Icons.timelapse, size: 15, color: Colors.black54),
+              const SizedBox(width: 5),
+              Text(
+                time,
+                style: const TextStyle(fontSize: 15, color: Colors.black54),
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }

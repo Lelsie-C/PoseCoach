@@ -28,7 +28,7 @@ class AppImages {
 }
 
 class AppText {
-  static const String title1 = "Weloe to PoseCoach";
+  static const String title1 = "Welcome to PoseCoach";
   static const String text1 =
       "Your journey to better posture, strength, and confidence starts here.";
   static const String title2 = "Get Instant Feedback";

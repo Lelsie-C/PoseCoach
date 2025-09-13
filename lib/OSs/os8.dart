@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sugmps/utils/routes.dart';
 import '../utils/styles.dart';
 
@@ -6,10 +7,10 @@ class OS8 extends StatefulWidget {
   const OS8({super.key});
 
   @override
-  State<OS8> createState() => _OS5State();
+  State<OS8> createState() => _OS8State();
 }
 
-class _OS5State extends State<OS8> {
+class _OS8State extends State<OS8> {
   bool _imagesPrecached = false;
 
   @override
@@ -19,6 +20,17 @@ class _OS5State extends State<OS8> {
     if (!_imagesPrecached) {
       precacheImage(const AssetImage(AppImages.image2), context);
       _imagesPrecached = true;
+    }
+  }
+
+  // Function to complete onboarding
+  Future<void> completeOnboarding() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isFirstTime', false);
+
+    // Navigate to homepage
+    if (mounted) {
+      Navigator.pushReplacementNamed(context, AppRoutes.homepage);
     }
   }
 
@@ -34,7 +46,7 @@ class _OS5State extends State<OS8> {
             children: [
               // Top back arrow
               IconButton(
-                onPressed: () => Navigator.pushNamed(context, AppRoutes.os7),
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.os4),
                 icon: const Icon(
                   Icons.arrow_back,
                   size: 30,
@@ -49,7 +61,7 @@ class _OS5State extends State<OS8> {
                 child: Column(
                   children: const [
                     Text(
-                      "What is your main goal with this app?",
+                      "You can",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
@@ -58,14 +70,6 @@ class _OS5State extends State<OS8> {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 10),
-                    Text(
-                      "You can skip if you're not sure",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 140, 139, 139),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
                   ],
                 ),
               ),
@@ -80,7 +84,7 @@ class _OS5State extends State<OS8> {
                         iconColor: Colors.green,
                         label: "Improve posture",
                         opacity: 0.25,
-                        onTap: () {},
+                        onTap: completeOnboarding,
                       ),
                       const SizedBox(height: 15),
                       _frequencyContainer(
@@ -88,7 +92,7 @@ class _OS5State extends State<OS8> {
                         iconColor: Colors.green,
                         label: "Reduce back pain",
                         opacity: 0.25,
-                        onTap: () {},
+                        onTap: completeOnboarding,
                       ),
                       const SizedBox(height: 15),
                       _frequencyContainer(
@@ -96,7 +100,7 @@ class _OS5State extends State<OS8> {
                         iconColor: Colors.green,
                         label: "Build strength",
                         opacity: 0.25,
-                        onTap: () {},
+                        onTap: completeOnboarding,
                       ),
                       const SizedBox(height: 15),
                       _frequencyContainer(
@@ -104,13 +108,13 @@ class _OS5State extends State<OS8> {
                         iconColor: Colors.green,
                         label: "Stay active",
                         opacity: 0.25,
-                        onTap: () {},
+                        onTap: completeOnboarding,
                       ),
                     ],
                   ),
                 ),
               ),
-              // Fixed Next button at the bottom
+              // Fixed Next/Skip button at the bottom
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Center(
@@ -132,11 +136,7 @@ class _OS5State extends State<OS8> {
                       ],
                     ),
                     child: ElevatedButton(
-                      onPressed:
-                          () => Navigator.pushReplacementNamed(
-                            context,
-                            AppRoutes.homepage,
-                          ),
+                      onPressed: completeOnboarding,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
@@ -150,8 +150,8 @@ class _OS5State extends State<OS8> {
                         elevation: 0,
                       ),
                       child: const Text(
-                        "Skip",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        "Continue",
+                        style: TextStyle(fontSize: 17, color: Colors.white),
                       ),
                     ),
                   ),

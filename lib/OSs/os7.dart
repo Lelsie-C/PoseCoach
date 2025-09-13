@@ -34,7 +34,7 @@ class _OS7State extends State<OS7> {
             children: [
               // Top back arrow
               IconButton(
-                onPressed: () => Navigator.pushNamed(context, AppRoutes.os8),
+                onPressed: () => Navigator.pushNamed(context, AppRoutes.os5),
                 icon: const Icon(
                   Icons.arrow_back,
                   size: 30,

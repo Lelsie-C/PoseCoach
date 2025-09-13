@@ -89,8 +89,10 @@ class _OS1State extends State<OS1> {
                       ],
                     ),
                     child: ElevatedButton(
-                      onPressed:
-                          () => Navigator.pushNamed(context, AppRoutes.os2),
+                      onPressed: () {
+                        // Replace OS1 with OS2
+                        Navigator.pushReplacementNamed(context, AppRoutes.os2);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,

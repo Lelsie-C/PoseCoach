@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:camera/camera.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'detections/squatdetection.dart';
 import 'detections/pushupdetection.dart';
 import 'detections/notyetavailable.dart';
@@ -32,6 +34,10 @@ Future<void> main() async {
   // Load previously saved videos
   await loadVideosFromPrefs();
 
+  // Check onboarding status
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
   // Set status bar color and icons
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
@@ -40,18 +46,21 @@ Future<void> main() async {
     ),
   );
 
-  runApp(MyApp(cameras: cameras));
+  runApp(MyApp(cameras: cameras, showOnboarding: isFirstTime));
 }
 
 class MyApp extends StatelessWidget {
   final List<CameraDescription> cameras;
-  const MyApp({super.key, required this.cameras});
+  final bool showOnboarding;
+
+  const MyApp({super.key, required this.cameras, required this.showOnboarding});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.os1,
+      // Dynamically set initial route
+      initialRoute: showOnboarding ? AppRoutes.os1 : AppRoutes.homepage,
       onGenerateRoute: (settings) {
         WidgetBuilder builder;
         switch (settings.name) {
@@ -98,7 +107,6 @@ class MyApp extends StatelessWidget {
             builder = (_) => const PushupDetectionScreen();
             break;
           case AppRoutes.squatdetection:
-            // Pass cameras list to CameraScreen
             builder = (_) => SquatDetectionPage();
             break;
           case AppRoutes.notyetavailable:

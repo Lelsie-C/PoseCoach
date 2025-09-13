@@ -29,6 +29,8 @@ class _SquatDetectionPageState extends State<SquatDetectionPage> {
 
   // Rep tracking state
   int _reps = 0;
+  int _goodReps = 0; // count of reps considered "good"
+  double _minAngleDuringRep = 180.0;
   bool _goingDown = false;
   String _feedback = "";
 
@@ -130,7 +132,12 @@ class _SquatDetectionPageState extends State<SquatDetectionPage> {
     final magAB = math.sqrt(ab.dx * ab.dx + ab.dy * ab.dy);
     final magCB = math.sqrt(cb.dx * cb.dx + cb.dy * cb.dy);
 
-    double angle = math.acos(dot / (magAB * magCB)) * (180 / math.pi);
+    // protect against division by zero
+    if (magAB == 0 || magCB == 0) return 180.0;
+
+    double value = dot / (magAB * magCB);
+    value = value.clamp(-1.0, 1.0);
+    double angle = math.acos(value) * (180 / math.pi);
     return angle;
   }
 
@@ -147,7 +154,12 @@ class _SquatDetectionPageState extends State<SquatDetectionPage> {
       Offset(leftAnkle.x, leftAnkle.y),
     );
 
-    // Feedback
+    // Track minimum angle during a down-phase — used to grade rep quality
+    if (_goingDown) {
+      if (angle < _minAngleDuringRep) _minAngleDuringRep = angle;
+    }
+
+    // Feedback text logic
     if (angle < 45) {
       _feedback = "Too low! Don’t go that far.";
     } else if (angle < 100) {
@@ -158,11 +170,22 @@ class _SquatDetectionPageState extends State<SquatDetectionPage> {
 
     // Rep counting
     if (angle < 90) {
-      _goingDown = true;
+      // entering down phase
+      if (!_goingDown) {
+        _goingDown = true;
+        _minAngleDuringRep = angle;
+      }
     }
     if (_goingDown && angle > 160) {
+      // rep finished; evaluate quality based on min angle during the rep
       _reps++;
+      if (_minAngleDuringRep >= 60 && _minAngleDuringRep <= 100) {
+        // this is a simple heuristic: bottom angle between 60 and 100 is good
+        _goodReps++;
+      }
+      // reset
       _goingDown = false;
+      _minAngleDuringRep = 180.0;
     }
   }
 
@@ -209,31 +232,69 @@ class _SquatDetectionPageState extends State<SquatDetectionPage> {
     showDialog(
       context: context,
       builder: (ctx) {
-        return AlertDialog(
-          title: const Text("Save Video"),
-          content: const Text("Do you want to save this workout video?"),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text("Cancel"),
-            ),
-            TextButton(
-              onPressed: () async {
-                savedVideos.add(
-                  SavedVideo(
-                    label: "Workout Video ${savedVideos.length + 1}",
-                    path: file.path,
+        String notes = "";
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            return AlertDialog(
+              title: const Text("Save Video"),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text("Do you want to save this workout video?"),
+                  const SizedBox(height: 12),
+                  Text("Reps: $_reps"),
+                  Text("Good reps: $_goodReps"),
+                  const SizedBox(height: 10),
+                  TextField(
+                    decoration: const InputDecoration(
+                      hintText: "Add notes (optional)",
+                    ),
+                    onChanged: (v) => notes = v,
                   ),
-                );
-                await saveVideosToPrefs();
-                Navigator.pop(ctx);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Video saved successfully")),
-                );
-              },
-              child: const Text("Save"),
-            ),
-          ],
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text("Cancel"),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    // compute accuracy and grade
+                    final total = _reps;
+                    final good = _goodReps;
+                    final accuracy = total > 0 ? (good / total) * 100.0 : 0.0;
+                    final grade = accuracy.round();
+
+                    savedVideos.add(
+                      SavedVideo(
+                        label: "Workout Video ${savedVideos.length + 1}",
+                        path: file.path,
+                        reps: total,
+                        goodReps: good,
+                        accuracy: accuracy,
+                        grade: grade,
+                        notes: notes,
+                      ),
+                    );
+                    await saveVideosToPrefs();
+                    Navigator.pop(ctx);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Video saved successfully")),
+                    );
+
+                    // Optionally reset counters after save
+                    setState(() {
+                      _reps = 0;
+                      _goodReps = 0;
+                      _feedback = "";
+                    });
+                  },
+                  child: const Text("Save"),
+                ),
+              ],
+            );
+          },
         );
       },
     );
